@@ -1,0 +1,38 @@
+[
+  {
+    "titulo": "Campanha de Influenza 2026",
+    "descricao": "Vacinação anual contra a gripe para proteger as crianças nos meses mais frios do ano.",
+    "publico": "Crianças de 6 meses a 5 anos",
+    "periodoInicio": "2026-04-01",
+    "periodoFim": "2026-06-30",
+    "prioritaria": true,
+    "icone": "megaphone-outline"
+  },
+  {
+    "titulo": "Multivacinação",
+    "descricao": "Atualize a caderneta e coloque todas as vacinas em dia em um único atendimento.",
+    "publico": "Menores de 15 anos",
+    "periodoInicio": "2026-08-01",
+    "periodoFim": "2026-09-30",
+    "prioritaria": false,
+    "icone": "shield-checkmark-outline"
+  },
+  {
+    "titulo": "Sarampo — Bloqueio",
+    "descricao": "Ação de reforço contra o sarampo diante de novos casos no país.",
+    "publico": "Crianças de 6 meses a 5 anos",
+    "periodoInicio": "2026-05-01",
+    "periodoFim": "2026-05-31",
+    "prioritaria": false,
+    "icone": "warning-outline"
+  },
+  {
+    "titulo": "Poliomielite — Dia D",
+    "descricao": "Mobilização nacional para manter o Brasil livre da poliomielite.",
+    "publico": "Menores de 5 anos",
+    "periodoInicio": "2026-10-01",
+    "periodoFim": "2026-10-31",
+    "prioritaria": false,
+    "icone": "calendar-outline"
+  }
+]
