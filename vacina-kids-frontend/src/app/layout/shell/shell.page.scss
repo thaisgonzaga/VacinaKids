@@ -1,0 +1,9 @@
+:host {
+  display: block;
+  height: 100%;
+}
+
+// O chrome do shell (menu, header, bottom nav, faixa de ícones do tablet) é
+// layout único do app e foi movido para global.scss sob `.vk-shell` — T5.4
+// (mantém todas as regras com a mesma especificidade/ordem e respeita o budget
+// de 2kb/4kb por componente).

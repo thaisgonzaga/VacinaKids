@@ -1,0 +1,72 @@
+<ion-split-pane contentId="vk-main" when="md" class="vk-shell">
+  <!-- Menu lateral: desktop (full) / tablet (faixa de ícones) -->
+  <ion-menu contentId="vk-main" type="overlay" class="menu">
+    <ion-content class="menu__scroll">
+      <div class="menu__inner">
+        <div class="brand">
+          <span class="brand__logo">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+              <path d="M12 6v12M6 12h12" stroke="#fff" stroke-width="2.6" stroke-linecap="round" />
+            </svg>
+          </span>
+          <span class="brand__name vk-title">VacinaKids</span>
+        </div>
+
+        <nav class="nav">
+          @for (item of nav; track item.path) {
+            <a
+              class="nav__item"
+              [routerLink]="['/app', item.path]"
+              routerLinkActive="is-active"
+              [title]="item.label"
+              [attr.aria-label]="item.label"
+            >
+              <svg class="nav__icon" width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                <path [attr.d]="item.iconPath" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" />
+              </svg>
+              <span class="nav__label">{{ item.label }}</span>
+            </a>
+          }
+        </nav>
+      </div>
+    </ion-content>
+  </ion-menu>
+
+  <!-- Conteúdo principal -->
+  <div class="ion-page" id="vk-main">
+    <header class="header">
+      <div class="header__titles">
+        <span class="header__kicker" [class.header__kicker--greeting]="navAtual().greeting">{{ navAtual().kicker }}</span>
+        <h1 class="header__title vk-title">{{ navAtual().titulo }}</h1>
+      </div>
+
+      <div class="header__actions">
+        <app-child-switcher
+          [children]="children()"
+          [active]="activeChild.active()"
+          (childChange)="trocarCrianca($event)"
+          (manage)="gerenciarCriancas()"
+        ></app-child-switcher>
+      </div>
+    </header>
+
+    <ion-router-outlet id="vk-outlet"></ion-router-outlet>
+
+    <!-- Navegação inferior (mobile) -->
+    <nav class="bottom-nav">
+      @for (item of nav; track item.path) {
+        <a
+          class="bottom-nav__item"
+          [routerLink]="['/app', item.path]"
+          routerLinkActive="is-active"
+          [attr.aria-label]="item.label"
+        >
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+            <path [attr.d]="item.iconPath" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" />
+          </svg>
+          <span>{{ item.short }}</span>
+        </a>
+      }
+    </nav>
+  </div>
+</ion-split-pane>
