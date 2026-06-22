@@ -1,0 +1,24 @@
+<ion-content class="ion-padding">
+  @if (vazio()) {
+    <app-empty-state
+      icon="megaphone-outline"
+      title="Nenhuma campanha ativa"
+      message="Quando houver campanhas de vacinação em andamento, elas aparecerão aqui."
+    ></app-empty-state>
+  } @else {
+    <div class="wrap">
+      @if (hero(); as h) {
+        <app-campaign-card class="hero" [campaign]="h" [hero]="true"></app-campaign-card>
+      }
+
+      @if (demais().length) {
+        <h2 class="section vk-title">Outras campanhas</h2>
+        <div class="grid">
+          @for (c of demais(); track c.id) {
+            <app-campaign-card [campaign]="c"></app-campaign-card>
+          }
+        </div>
+      }
+    </div>
+  }
+</ion-content>
