@@ -80,7 +80,7 @@ O Brasil enfrenta desde 2015 uma queda contínua na cobertura vacinal infantil �
 | **TypeScript** | Linguagem | Tipos = menos bugs e modelos de domínio expressivos (enums, interfaces). |
 | **Firebase Authentication** | Login real | Multiusuário com dados isolados por `uid`, sem backend próprio; e-mail/senha cobre o MVP. |
 | **Firestore** | Persistência (diferencial) | NoSQL em tempo real, sem backend próprio; modelagem por coleções (`children`, `vaccinationRecords`, `campaigns`) casa com o domínio; tier grátis suficiente. |
-| **AngularFire (`@angular/fire`)** | Integração Firebase | Providers `provideX` no bootstrap standalone, DI mockável nos testes e observables RxJS nativos (ver ADR-006). |
+| **AngularFire (`@angular/fire`)** | Integração Firebase | Providers `provideX` no bootstrap standalone, DI mockável nos testes e observables RxJS nativos. |
 | **Firebase Hosting** | Deploy (diferencial) | Publicação simples, HTTPS, integra com Firestore; um comando para subir. |
 | **Karma/Jasmine** | Testes | Já vêm no Angular; baixo atrito para os testes unitários da lógica de status. |
 | **Git + commits semânticos** | Versionamento | Histórico legível demonstra processo (avaliado). |

@@ -1,4 +1,4 @@
-# ADR-004 — Persistência em Firestore desde o início (isolamento por uid)
+# ADR-002 — Persistência em Firestore desde o início (isolamento por uid)
 
 ## Status
 Aceito.

@@ -1,4 +1,4 @@
-# ADR-005 — Modelagem do status: função pura com janela de tolerância
+# ADR-004 — Modelagem do status: função pura com janela de tolerância
 
 ## Status
 Aceito. Substitui o [ADR-003](adr-003-modelagem-status.md).
