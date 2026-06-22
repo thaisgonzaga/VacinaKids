@@ -11,11 +11,6 @@ Desde 2015 o Brasil enfrenta queda contínua na cobertura vacinal infantil e vol
 ## A solução
 Um aplicativo que digitaliza o acompanhamento vacinal. Para cada criança cadastrada, o VacinaKids gera a agenda baseada no Calendário Nacional de Vacinação 2026 e calcula automaticamente o status de cada dose (**Aplicada, Pendente, Atrasada, Futura**) a partir da data de nascimento. Mostra um painel da situação vacinal com indicadores visuais, explica para que serve cada vacina e lista campanhas ativas — tudo separado por criança, sem misturar históricos.
 
-> _[inserir screenshot ou GIF do app funcionando aqui]_
-
-## Demo
-- 🔗 Live demo: _[link do Firebase Hosting / Vercel / Netlify]_
-- 🎥 Vídeo: _[opcional]_
 
 ## Arquitetura
 Camadas: UI (Ionic) → Componentes reutilizáveis → Services (regra de negócio) → Models (DTOs + enum) → Persistência (Firebase Auth + Firestore, isolada por `uid`).
@@ -51,32 +46,25 @@ npm test
 ```
 > O app requer um projeto Firebase. O repositório já traz o bloco `firebase` preenchido para o projeto de demonstração `vacina-kids-94e19` em `src/environments/environment.ts` e `environment.prod.ts` (chaves web do Firebase são públicas por design — a segurança real está nas `firestore.rules`). Para apontar para outro projeto, substitua esse bloco (apiKey, authDomain, projectId, etc.) e habilite Authentication (e-mail/senha) + Firestore. Sem uma configuração válida, login e persistência não funcionam (não há fallback de seed local).
 
-## Resultados e métricas
-- Lighthouse mobile: Acessibilidade **100/100**; Performance **100/100** em conexão normal (representa o deploy com brotli/HTTP2/CDN) e **64** sob o throttling pesado padrão do Lighthouse servindo só com gzip local
-- Testes unitários: **34** passando (Karma/Jasmine) — `status.spec.ts` (8 casos, cobre bordas 30/-60) e `schedule.service.spec.ts` (7 casos), além de specs de auth/shell/serviços
-- Identificação de pendência atrasada em ≤ 2 toques a partir da home
-- 100% das telas usando exclusivamente a paleta oficial do desafio
-- Os 4 cenários do desafio demonstráveis no app
 
 ## Decisões técnicas
 Registros de decisão (ADRs) em [`/docs/`](docs/):
 - ADR-001 — Ionic + Angular como base
-- ADR-004 — Persistência em Firestore + Auth desde o início (isolamento por `uid`) — substitui ADR-002
-- ADR-005 — Modelagem do status: função pura com janela de tolerância — substitui ADR-003
-- ADR-006 — AngularFire em vez do SDK modular puro
+- ADR-002 — Persistência em Firestore + Auth desde o início (isolamento por `uid`)
+- ADR-003 — Modelagem do status: função pura com janela de tolerância — substitui ADR-003
+- ADR-004 — AngularFire em vez do SDK modular puro
 
 (ADR-002 e ADR-003 mantidos como histórico, marcados como substituídos.)
 Uso consciente de IA documentado em [`/docs/uso-de-ia.md`](docs/uso-de-ia.md).
 
 ## Próximos passos / Roadmap
-- Notificações push antes de cada dose vencer
-- Sincronização offline (cache do Firestore) e multi-dispositivo
 - Vacinas de viajante e casos especiais (CRIE)
 - Exportar carteira em PDF
 - Idade 5–14 anos completa (HPV, reforços)
+- Perfil de acesso administrativo
 
 ## Autor
-**[Seu nome]** — [LinkedIn] · [e-mail] · [GitHub]
+Thaís Rodrigues Gonzaga
 
 ---
 _Aviso: ferramenta de organização e acompanhamento. Não substitui orientação médica nem as fontes oficiais do Ministério da Saúde._

@@ -1,10 +1,10 @@
 # ADR-004 — Persistência em Firestore desde o início (isolamento por uid)
 
 ## Status
-Aceito. Substitui o [ADR-002](adr-002-firestore-vs-local.md).
+Aceito.
 
 ## Contexto
-O ADR-002 previa começar com seed local em JSON e plugar o Firestore depois, para não travar UI/testes caso a configuração do Firebase atrasasse. Ao consolidar o plano de implementação, decidiu-se ter persistência real e autenticação **desde o início**: o app é multiusuário, com os dados de cada responsável isolados por conta. Um seed local não suportaria isolamento por usuário nem o requisito de autenticação real.
+Ao consolidar o plano de implementação, decidiu-se ter persistência real e autenticação **desde o início**: o app é multiusuário, com os dados de cada responsável isolados por conta. Um seed local não suportaria isolamento por usuário nem o requisito de autenticação real.
 
 ## Decisão
 - **Cloud Firestore desde o início**, sem camada de seed local em JSON.

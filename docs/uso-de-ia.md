@@ -7,6 +7,7 @@ Transparência sobre onde a IA ajudou e onde o julgamento foi meu.
 - Esboçar a arquitetura em camadas e o template de README/ADRs.
 - Gerar boilerplate de componentes Ionic e os esqueletos dos casos de teste.
 - Revisar nomenclatura, acessibilidade e consistência das cores.
+- Realizar o Design
 
 ## O que revisei / reescrevi manualmente
 - **Modelagem de status** (`computeStatus`): revisei a regra para adotar uma **janela de tolerância** em vez de limites rígidos — não marcar "Atrasada" no vencimento exato (só após 30 dias) e já tratar doses próximas como "Pendente" (a partir de 60 dias antes), porque as doses do PNI têm janela de aplicação. Também movi a regra para uma **função pura** (`core/utils/status.ts`), fora dos models.
@@ -18,4 +19,3 @@ Transparência sobre onde a IA ajudou e onde o julgamento foi meu.
 - Verificação factual dos dados de vacinação.
 - Decisões de UX dos fluxos principais.
 
-> O ponto não é "usei IA", é mostrar **critério**: o que aceitei, o que rejeitei e por quê.

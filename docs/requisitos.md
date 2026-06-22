@@ -56,20 +56,11 @@
 
 ## Requisitos Não Funcionais
 
-### RNF01 — Usabilidade
-- Responder "qual a próxima vacina e quando?" em menos de 5 segundos de navegação.
-- Comunicação de status por cores quentes + ícones, mais rápida que texto.
-
-### RNF02 — Compatibilidade / Responsividade
+### RNF01 — Compatibilidade / Responsividade
 - Layout responsivo verificado em mobile, tablet e desktop (3 larguras).
 
-### RNF03 — Desempenho
-- Lighthouse mobile ≥ 80 em Performance.
 
-### RNF04 — Acessibilidade
-- Lighthouse mobile ≥ 80 em Acessibilidade.
-
-### RNF05 — Identidade visual
+### RNF02 — Identidade visual
 - 100% das telas usando exclusivamente a paleta oficial:
 
 | Cor | Hex | Uso |
@@ -79,39 +70,17 @@
 | Laranja | `#FDA769` | Status **Atrasada** / alerta + campanhas |
 | Marrom | `#473C33` | Texto principal, títulos, contraste |
 
-### RNF06 — Manutenibilidade / Arquitetura
+### RNF03 — Manutenibilidade / Arquitetura
 - Separação estrita de responsabilidades: páginas orquestram, componentes burros (`input()`/`output()` via signals), services com a regra de negócio, models como **DTOs/interfaces** (lógica em funções puras e services, fora dos models).
 - Lógica de status centralizada e única na função pura `computeStatus` (`core/utils/status.ts`), sem duplicação na UI.
 - Acesso ao Firebase isolado em 4 services de dados; o domínio (`ScheduleService`, `computeStatus`) não depende do Firebase.
 - Ao menos 1 componente reutilizável usado em pelo menos 2 telas.
 
-### RNF07 — Testabilidade / Confiabilidade
-- Lógica de status isolada em função pura testável, com ≥ 3 testes unitários passando (Karma/Jasmine), cobrindo as bordas da tolerância (30/-60).
 
-### RNF08 — Integridade dos dados de saúde
+### RNF04 — Integridade dos dados de saúde
 - Dados do calendário validados contra a fonte oficial gov.br antes de entrarem no sistema.
 
-### RNF09 — Segurança / Deploy
-- Build de produção sem erros e deploy público acessível via HTTPS (Firebase Hosting).
+### RNF05 — Segurança 
 - Regras de segurança do Firestore garantindo isolamento por `uid`.
 
-### RNF10 — Versionamento
-- Histórico de commits semânticos (Conventional Commits).
 
----
-
-## Rastreabilidade (requisito → origem)
-
-| Requisito | Origem |
-|---|---|
-| RF01–RF02, RF04–RF07 | Escopo do MVP (Fase 1) e mapeamento problema → feature (estudo de caso) |
-| RF03 | ADR-005 (modelagem do status com janela de tolerância) |
-| RF08 | ADR-004 (persistência Firestore + isolamento por uid) e architecture.md |
-| RF09 | Disclaimer de produto (estudo de caso) |
-| RF10 | ADR-004 (autenticação e isolamento por uid) e decisões do plano de implementação |
-| RNF01, RNF03, RNF04 | Métricas de sucesso (Fase 1) |
-| RNF05 | Paleta obrigatória do desafio |
-| RNF06 | architecture.md e ADR-001/005 |
-| RNF07, RNF10 | Boas práticas (Fase 3) |
-| RNF08 | uso-de-ia.md (verificação factual) |
-| RNF09 | ADR-004 (regras de segurança) e Fase 4 (deploy) |
