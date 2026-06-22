@@ -1,0 +1,108 @@
+<ion-content class="ion-padding">
+  @if (!temCrianca()) {
+    <app-empty-state
+      icon="people-outline"
+      title="Comece cadastrando uma criança"
+      message="Adicione o perfil de uma criança para ver a cobertura vacinal e as próximas doses."
+      ctaLabel="Adicionar criança"
+      (action)="irParaCriancas()"
+    ></app-empty-state>
+  } @else if (vm(); as data) {
+    <div class="wrap">
+      @if (data.atrasadas.length) {
+        <section class="alert">
+          <span class="alert__icon"><ion-icon name="warning-outline" aria-hidden="true"></ion-icon></span>
+          <div class="alert__text">
+            <p class="alert__title vk-title">
+              {{ data.atrasadas.length }}
+              {{ data.atrasadas.length === 1 ? 'vacina atrasada' : 'vacinas atrasadas' }}
+            </p>
+            <p class="alert__sub">Regularize o quanto antes para manter a proteção em dia.</p>
+          </div>
+          <button class="alert__btn" type="button" (click)="irParaJornada()">Ver pendências</button>
+        </section>
+      }
+
+      <div class="top">
+        <div class="cover">
+          <app-coverage-ring
+            [percent]="data.coverage.percentEmDia"
+            [aplicadas]="data.coverage.aplicadas"
+            [pendentes]="data.coverage.pendentes"
+            [atrasadas]="data.coverage.atrasadas"
+            [futuras]="data.coverage.futuras"
+          ></app-coverage-ring>
+          <div class="cover__side">
+            <p class="cover__title">Cobertura vacinal</p>
+            <p class="cover__caption">
+              {{ data.coverage.aplicadas }} de {{ total(data.coverage) }} doses aplicadas no
+              calendário.
+            </p>
+            <div class="legend">
+              <div class="legend__row">
+                <span class="legend__dot" style="background: #abc270"></span>
+                <span class="legend__label">Aplicadas</span>
+                <span class="legend__count">{{ data.coverage.aplicadas }}</span>
+              </div>
+              <div class="legend__row">
+                <span class="legend__dot" style="background: #fec868"></span>
+                <span class="legend__label">Pendentes</span>
+                <span class="legend__count">{{ data.coverage.pendentes }}</span>
+              </div>
+              <div class="legend__row">
+                <span class="legend__dot" style="background: #fda769"></span>
+                <span class="legend__label">Atrasadas</span>
+                <span class="legend__count">{{ data.coverage.atrasadas }}</span>
+              </div>
+              <div class="legend__row">
+                <span class="legend__dot" style="background: #cfe0a8"></span>
+                <span class="legend__label">Futuras</span>
+                <span class="legend__count">{{ data.coverage.futuras }}</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="indicators">
+          <app-indicator-card label="Aplicadas" [value]="data.coverage.aplicadas" [status]="Status.Aplicada"></app-indicator-card>
+          <app-indicator-card label="Pendentes" [value]="data.coverage.pendentes" [status]="Status.Pendente"></app-indicator-card>
+          <app-indicator-card label="Atrasadas" [value]="data.coverage.atrasadas" [status]="Status.Atrasada"></app-indicator-card>
+          <app-indicator-card label="Futuras" [value]="data.coverage.futuras" [status]="Status.Futura"></app-indicator-card>
+        </div>
+      </div>
+
+      <section class="next">
+        <div class="next__head">
+          <h2 class="next__title vk-title">Próximas vacinas</h2>
+          <button class="next__link" type="button" (click)="irParaJornada()">Ver jornada</button>
+        </div>
+        @if (data.proximas.length) {
+          <div class="next__list">
+            @for (dose of data.proximas; track dose.catalog.id) {
+              <app-dose-item
+                variant="dashboard"
+                [dose]="dose"
+                (details)="abrirDetalhe($event)"
+                (register)="registrar($event)"
+              ></app-dose-item>
+            }
+          </div>
+        } @else {
+          <p class="next__empty">Nenhuma dose prevista no momento. Tudo em dia! 🎉</p>
+        }
+      </section>
+
+      <p class="vk-disclaimer">
+        Este sistema é uma ferramenta de organização e acompanhamento vacinal. Não substitui
+        orientação médica, a caderneta oficial de vacinação ou informações disponibilizadas pelo
+        Ministério da Saúde.
+      </p>
+    </div>
+  }
+
+  <app-vaccine-detail-drawer
+    [dose]="doseSel()"
+    (closed)="doseSel.set(null)"
+    (register)="registrar($event)"
+  ></app-vaccine-detail-drawer>
+</ion-content>
