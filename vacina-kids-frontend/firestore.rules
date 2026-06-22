@@ -1,0 +1,38 @@
+rules_version = '2';
+
+// Regras de segurança VacinaKids (T0.10 / PLANO §4).
+// Isolamento por uid: cada usuário só enxerga as próprias crianças e
+// registros. `campaigns` é coleção global somente-leitura (seed via admin).
+//
+// Publicar: Firebase Console → Firestore → Regras → colar e Publicar,
+// ou `firebase deploy --only firestore:rules` (precisa firebase.json).
+
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    match /children/{id} {
+      allow read, delete: if request.auth != null
+                          && request.auth.uid == resource.data.uid;
+      allow create:       if request.auth != null
+                          && request.auth.uid == request.resource.data.uid;
+      allow update:       if request.auth != null
+                          && request.auth.uid == resource.data.uid
+                          && request.auth.uid == request.resource.data.uid;
+    }
+
+    match /vaccinationRecords/{id} {
+      allow read, delete: if request.auth != null
+                          && request.auth.uid == resource.data.uid;
+      allow create:       if request.auth != null
+                          && request.auth.uid == request.resource.data.uid;
+      allow update:       if request.auth != null
+                          && request.auth.uid == resource.data.uid
+                          && request.auth.uid == request.resource.data.uid;
+    }
+
+    match /campaigns/{id} {
+      allow read:  if request.auth != null;
+      allow write: if false;
+    }
+  }
+}
