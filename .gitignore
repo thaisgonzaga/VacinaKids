@@ -1,0 +1,17 @@
+# Dependências e build (também cobertos pelo .gitignore de vacina-kids-frontend/)
+**/node_modules/
+**/www/
+**/.angular/
+**/dist/
+**/coverage/
+
+# Logs
+*.log
+npm-debug.log
+
+# Arquivos de SO e editor
+.DS_Store
+Thumbs.db
+*~
+*.sw[mnpcod]
+.idea/
