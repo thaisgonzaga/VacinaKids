@@ -1,0 +1,66 @@
+.wrap {
+  width: 100%;
+}
+
+.intro {
+  margin: 0 0 14px;
+  font-size: 0.82rem;
+  line-height: 1.5;
+  color: var(--vk-text-2);
+}
+.intro strong {
+  color: var(--vk-text);
+}
+
+.bands {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.band {
+  background: #fff;
+  border: 1px solid var(--vk-border);
+  border-radius: 16px;
+  box-shadow: var(--vk-shadow-card-sm);
+  overflow: hidden;
+}
+.band__header {
+  --background: #fff;
+  --padding-start: 14px;
+  --inner-padding-end: 14px;
+  --min-height: 64px;
+}
+.band__head {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  width: 100%;
+}
+.band__dot {
+  flex: none;
+  width: 11px;
+  height: 11px;
+  border-radius: 50%;
+}
+.band__titles {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+}
+.band__name {
+  font-family: 'Poppins', sans-serif;
+  font-weight: 600;
+  font-size: 0.95rem;
+  color: var(--vk-text);
+}
+.band__count {
+  font-size: 0.75rem;
+  color: var(--vk-text-2);
+}
+.band__doses {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 6px 14px 14px;
+}

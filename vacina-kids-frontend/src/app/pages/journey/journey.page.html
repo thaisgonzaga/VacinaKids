@@ -1,0 +1,52 @@
+<ion-content class="ion-padding">
+  @if (!temCrianca()) {
+    <app-empty-state
+      icon="calendar-outline"
+      title="Nenhuma criança selecionada"
+      message="Selecione ou cadastre uma criança para ver a jornada vacinal por faixa etária."
+    ></app-empty-state>
+  } @else {
+    <div class="wrap">
+      <p class="intro">
+        Calendário Nacional de Vacinação 2026 para
+        <strong>{{ activeChild.active()?.nome }}</strong>. Toque em cada faixa etária para ver as
+        doses.
+      </p>
+
+      <ion-accordion-group [multiple]="true" class="bands">
+        @for (band of bands(); track band.band) {
+          <ion-accordion [value]="band.band" class="band">
+            <ion-item slot="header" lines="none" class="band__header">
+              <div class="band__head">
+                <span class="band__dot" [style.background]="corFaixa(band.statusAgregado)"></span>
+                <div class="band__titles">
+                  <span class="band__name">{{ band.band }}</span>
+                  <span class="band__count">
+                    {{ band.total }} vacinas · {{ band.aplicadas }}/{{ band.total }} aplicadas
+                  </span>
+                </div>
+                <app-status-badge [status]="band.statusAgregado"></app-status-badge>
+              </div>
+            </ion-item>
+
+            <div slot="content" class="band__doses">
+              @for (dose of band.doses; track dose.catalog.id) {
+                <app-dose-item
+                  [dose]="dose"
+                  (details)="abrirDetalhe($event)"
+                  (register)="registrar($event)"
+                ></app-dose-item>
+              }
+            </div>
+          </ion-accordion>
+        }
+      </ion-accordion-group>
+    </div>
+  }
+
+  <app-vaccine-detail-drawer
+    [dose]="doseSel()"
+    (closed)="doseSel.set(null)"
+    (register)="registrar($event)"
+  ></app-vaccine-detail-drawer>
+</ion-content>
