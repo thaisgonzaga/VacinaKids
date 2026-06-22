@@ -1,0 +1,24 @@
+@if (hero()) {
+  <article class="hero">
+    <span class="hero__bubble" aria-hidden="true"></span>
+    <span class="hero__tag">Campanha prioritária</span>
+    <h2 class="hero__title vk-title">{{ campaign().titulo }}</h2>
+    <p class="hero__desc">{{ campaign().descricao }}</p>
+    <div class="hero__facts">
+      <span class="hero__fact"><strong>Público</strong>{{ campaign().publico }}</span>
+      <span class="hero__fact"><strong>Período</strong>{{ periodo() }}</span>
+    </div>
+  </article>
+} @else {
+  <article class="camp">
+    <span class="camp__icon">
+      <ion-icon [name]="campaign().icone || 'megaphone-outline'" aria-hidden="true"></ion-icon>
+    </span>
+    <h3 class="camp__title vk-title">{{ campaign().titulo }}</h3>
+    <p class="camp__desc">{{ campaign().descricao }}</p>
+    <div class="camp__facts">
+      <span><strong>Público:</strong> {{ campaign().publico }}</span>
+      <span><strong>Período:</strong> {{ periodo() }}</span>
+    </div>
+  </article>
+}

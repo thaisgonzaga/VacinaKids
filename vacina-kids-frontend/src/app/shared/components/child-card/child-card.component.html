@@ -1,0 +1,33 @@
+<article class="card" [class.is-active]="active()">
+  @if (active()) {
+    <span class="card__flag">Selecionado</span>
+  }
+
+  <div class="card__head">
+    <span class="avatar" [style.background]="cor()">{{ iniciais() }}</span>
+    <div class="info">
+      <p class="info__name">{{ child().nome }}</p>
+      <p class="info__age">{{ nascimento() }} · {{ idade() }}</p>
+    </div>
+  </div>
+
+  <div class="coverage">
+    <div class="coverage__head">
+      <span>Progresso vacinal</span>
+      <span class="coverage__pct">{{ progresso() }}%</span>
+    </div>
+    <div class="bar">
+      <div class="bar__fill" [style.width.%]="progresso()" [style.background]="cor()"></div>
+    </div>
+  </div>
+
+  <div class="actions">
+    <button type="button" class="select" (click)="selectChild.emit(child())">Selecionar</button>
+    <button type="button" class="icon-btn" (click)="edit.emit(child())" aria-label="Editar">
+      <ion-icon name="create-outline"></ion-icon>
+    </button>
+    <button type="button" class="icon-btn icon-btn--danger" (click)="remove.emit(child())" aria-label="Excluir">
+      <ion-icon name="trash-outline"></ion-icon>
+    </button>
+  </div>
+</article>

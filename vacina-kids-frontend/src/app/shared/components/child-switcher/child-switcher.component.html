@@ -1,0 +1,53 @@
+<button
+  class="switcher"
+  type="button"
+  [id]="triggerId"
+  [attr.aria-label]="rotuloAtivo()"
+>
+  @if (active(); as a) {
+    <span class="switcher__avatar" [style.background]="cor(a)">{{ iniciais(a.nome) }}</span>
+    <span class="switcher__info">
+      <span class="switcher__name">{{ a.nome }}</span>
+      <span class="switcher__age">{{ idade(a) }}</span>
+    </span>
+  } @else {
+    <span class="switcher__avatar switcher__avatar--empty">
+      <ion-icon name="add-outline"></ion-icon>
+    </span>
+    <span class="switcher__info">
+      <span class="switcher__name">Selecionar criança</span>
+    </span>
+  }
+  <ion-icon class="switcher__chev" name="chevron-down-outline"></ion-icon>
+</button>
+
+<ion-popover #pop class="vk-child-pop" [trigger]="triggerId" triggerAction="click" alignment="end">
+  <ng-template>
+    <div class="pop">
+      @if (children().length) {
+        <p class="pop__label">Trocar perfil</p>
+        @for (c of children(); track c.id) {
+          <button
+            class="pop__item"
+            type="button"
+            [class.is-active]="c.id === active()?.id"
+            (click)="selecionar(c, pop)"
+          >
+            <span class="pop__avatar" [style.background]="cor(c)">{{ iniciais(c.nome) }}</span>
+            <span class="pop__text">
+              <span class="pop__name">{{ c.nome }}</span>
+              <span class="pop__age">{{ idade(c) }}</span>
+            </span>
+          </button>
+        }
+        <div class="pop__divider"></div>
+      } @else {
+        <p class="pop__empty">Nenhuma criança cadastrada ainda.</p>
+      }
+      <button class="pop__manage" type="button" (click)="gerenciar(pop)">
+        <ion-icon name="people-outline"></ion-icon>
+        <span>Gerenciar crianças</span>
+      </button>
+    </div>
+  </ng-template>
+</ion-popover>

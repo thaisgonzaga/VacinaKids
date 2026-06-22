@@ -1,0 +1,53 @@
+<ion-modal class="vk-drawer" [isOpen]="!!dose()" (didDismiss)="closed.emit()">
+  <ng-template>
+    @if (dose(); as d) {
+      <ion-content class="drawer">
+        <header class="drawer__head" [style.background]="vis()?.bg">
+          <button type="button" class="drawer__close" (click)="closed.emit()" aria-label="Fechar">
+            <ion-icon name="close-outline"></ion-icon>
+          </button>
+          <p class="drawer__kicker" [style.color]="vis()?.fg">{{ vis()?.label }} · {{ d.catalog.dose }}</p>
+          <h2 class="drawer__title vk-title">{{ d.catalog.vaccine }}</h2>
+          <p class="drawer__meta">
+            @if (aplicada() && aplicacao()) {
+              Aplicada em {{ aplicacao() }}
+            } @else {
+              {{ d.catalog.when }} · prevista {{ previsao() }}
+            }
+          </p>
+        </header>
+
+        <div class="drawer__body">
+          <section class="fact">
+            <p class="fact__label">Protege contra</p>
+            <p class="fact__text">{{ d.catalog.protects }}</p>
+          </section>
+
+          <section class="fact fact--row">
+            <span class="fact__icon fact__icon--why"><ion-icon name="bulb-outline"></ion-icon></span>
+            <div>
+              <p class="fact__title">Por que é importante</p>
+              <p class="fact__body">{{ d.catalog.why }}</p>
+            </div>
+          </section>
+
+          <section class="fact fact--row">
+            <span class="fact__icon fact__icon--when"><ion-icon name="calendar-number-outline"></ion-icon></span>
+            <div>
+              <p class="fact__title">Quando aplicar</p>
+              <p class="fact__body">{{ d.catalog.when }} (previsto: {{ previsao() }})</p>
+            </div>
+          </section>
+
+          @if (!aplicada()) {
+            <button type="button" class="drawer__cta" (click)="register.emit(d)">
+              Registrar aplicação
+            </button>
+          }
+
+          <p class="drawer__note">{{ disclaimer }}</p>
+        </div>
+      </ion-content>
+    }
+  </ng-template>
+</ion-modal>

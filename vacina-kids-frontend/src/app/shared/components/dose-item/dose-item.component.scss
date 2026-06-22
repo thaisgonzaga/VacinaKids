@@ -1,0 +1,141 @@
+:host {
+  display: block;
+}
+
+.dose {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 4px;
+}
+
+.dose__mark {
+  flex: none;
+  display: grid;
+  place-items: center;
+  width: 38px;
+  height: 38px;
+  border-radius: 12px;
+  font-size: 20px;
+}
+
+.dose__info {
+  flex: 1;
+  min-width: 0;
+}
+.dose__name {
+  margin: 0;
+  font-weight: 600;
+  color: var(--vk-text);
+}
+.dose__dose {
+  color: var(--vk-text-3);
+  font-weight: 500;
+}
+.dose__meta {
+  margin: 2px 0 0;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.8rem;
+  color: var(--vk-text-2);
+}
+.dot {
+  color: var(--vk-text-3);
+}
+
+.dose__side {
+  flex: none;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 10px;
+}
+.dose__actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+/* Botões da jornada (design §jornada): "Detalhes" outline branco + "Registrar"
+   verde cheio, só texto (sem ícone), lado a lado na mesma linha do badge. */
+.dose__btn {
+  border: 1px solid transparent;
+  border-radius: 10px;
+  padding: 8px 14px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  line-height: 1;
+  white-space: nowrap;
+  cursor: pointer;
+}
+.dose__btn--ghost {
+  background: #fff;
+  border-color: var(--vk-border-2);
+  color: var(--vk-text);
+}
+.dose__btn--primary {
+  background: var(--ion-color-primary);
+  color: #fff;
+  font-family: 'Poppins', 'Helvetica Neue', sans-serif;
+}
+
+/* Variante dashboard (design §dashboard › próximas vacinas): cada item é um
+   cartão com borda, layout em linha (badge + Registrar lado a lado). */
+.dose--card {
+  gap: 14px;
+  padding: 12px;
+  border: 1px solid var(--vk-border-3);
+  border-radius: 13px;
+  background: #fff;
+  flex-wrap: wrap;
+}
+.dose--card .dose__mark {
+  width: 40px;
+  height: 40px;
+  border-radius: 11px;
+}
+.dose--card .dose__info {
+  min-width: 120px;
+}
+.dose--card .dose__name {
+  font-size: 0.875rem;
+}
+.dose--card .dose__side {
+  flex-direction: row;
+  align-items: center;
+  gap: 10px;
+}
+.dose__register {
+  border: 1px solid var(--vk-border-2);
+  border-radius: 10px;
+  background: #fff;
+  color: var(--vk-text);
+  font-weight: 600;
+  font-size: 0.78rem;
+  padding: 8px 13px;
+  cursor: pointer;
+}
+
+/* Variante jornada (design §jornada › doses da faixa): cada dose é um cartão
+   de fundo claro com badge + Detalhes + Registrar alinhados à direita. */
+.dose--journey {
+  gap: 14px;
+  padding: 12px 14px;
+  border: 1px solid var(--vk-border);
+  border-radius: 13px;
+  background: var(--vk-surface);
+  flex-wrap: wrap;
+}
+.dose--journey .dose__mark {
+  width: 40px;
+  height: 40px;
+  border-radius: 11px;
+}
+.dose--journey .dose__info {
+  min-width: 130px;
+}
+.dose--journey .dose__name {
+  font-size: 0.9rem;
+}

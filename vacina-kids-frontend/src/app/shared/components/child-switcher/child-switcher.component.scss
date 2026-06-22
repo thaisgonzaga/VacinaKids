@@ -1,0 +1,72 @@
+:host {
+  display: block;
+}
+
+// ── Gatilho (no header) ───────────────────────────────────────
+.switcher {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  max-width: 240px;
+  padding: 6px 10px 6px 6px;
+  border: 1px solid var(--vk-border-2);
+  border-radius: 14px;
+  background: var(--vk-surface);
+  cursor: pointer;
+  transition: border-color 0.15s, background 0.15s;
+}
+.switcher:hover {
+  border-color: var(--ion-color-primary);
+}
+
+.switcher__avatar {
+  flex: none;
+  display: grid;
+  place-items: center;
+  width: 32px;
+  height: 32px;
+  border-radius: 10px;
+  color: #fff;
+  font-weight: 700;
+  font-size: 0.8rem;
+}
+.switcher__avatar--empty {
+  background: var(--vk-border-2);
+  color: var(--vk-text-2);
+  font-size: 1.1rem;
+}
+
+.switcher__info {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  text-align: left;
+}
+.switcher__name {
+  font-weight: 600;
+  font-size: 0.85rem;
+  color: var(--vk-text);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.switcher__age {
+  font-size: 0.72rem;
+  color: var(--vk-text-3);
+}
+
+.switcher__chev {
+  flex: none;
+  font-size: 16px;
+  color: var(--vk-text-3);
+}
+
+// No mobile o gatilho fica compacto (só avatar + seta).
+@media (max-width: 519.98px) {
+  .switcher__info {
+    display: none;
+  }
+}
+
+// O conteúdo do popover (.pop*) é portado para fora da view (como os modais),
+// então seu estilo vive em global.scss (`.vk-child-pop`) — T5.4.

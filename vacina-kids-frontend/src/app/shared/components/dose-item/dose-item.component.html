@@ -1,0 +1,56 @@
+<div
+  class="dose"
+  [class.dose--card]="variant() === 'dashboard'"
+  [class.dose--journey]="variant() === 'journey'"
+>
+  <span class="dose__mark" [style.background]="v().bg" [style.color]="v().fg">
+    <ion-icon [name]="v().icon" aria-hidden="true"></ion-icon>
+  </span>
+
+  <div class="dose__info">
+    @if (variant() === 'dashboard') {
+      <p class="dose__name">
+        {{ dose().catalog.vaccine }}
+        <span class="dose__dose">· {{ dose().catalog.dose }}</span>
+      </p>
+      <p class="dose__meta">
+        <span>{{ dose().catalog.band }}</span>
+        <span class="dot">·</span>
+        <span>prevista {{ previsao() }}</span>
+      </p>
+    } @else {
+      <p class="dose__name">{{ dose().catalog.vaccine }}</p>
+      <p class="dose__meta">
+        <span>{{ dose().catalog.dose }}</span>
+        <span class="dot">·</span>
+        @if (aplicada() && aplicacao()) {
+          <span>Aplicada em {{ aplicacao() }}</span>
+        } @else {
+          <span>prevista {{ previsao() }}</span>
+        }
+      </p>
+    }
+  </div>
+
+  <div class="dose__side">
+    <app-status-badge [status]="dose().status"></app-status-badge>
+    <div class="dose__actions">
+      @if (variant() === 'dashboard') {
+        @if (!aplicada()) {
+          <button type="button" class="dose__register" (click)="register.emit(dose())">
+            Registrar
+          </button>
+        }
+      } @else {
+        <button type="button" class="dose__btn dose__btn--ghost" (click)="details.emit(dose())">
+          Detalhes
+        </button>
+        @if (!aplicada()) {
+          <button type="button" class="dose__btn dose__btn--primary" (click)="register.emit(dose())">
+            Registrar
+          </button>
+        }
+      }
+    </div>
+  </div>
+</div>
