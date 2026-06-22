@@ -1,0 +1,229 @@
+<ion-content [fullscreen]="true" class="auth">
+  <div class="auth__wrap">
+    <!-- Painel de arte (oculto no mobile) -->
+    <aside class="auth__art">
+      <span class="auth__bubble auth__bubble--1" aria-hidden="true"></span>
+      <span class="auth__bubble auth__bubble--2" aria-hidden="true"></span>
+
+      <div class="auth__brand">
+        <span class="auth__logo auth__logo--light">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+            <path d="M12 6v12M6 12h12" stroke="#ABC270" stroke-width="2.6" stroke-linecap="round" />
+          </svg>
+        </span>
+        <span class="auth__brand-name vk-title">VacinaKids</span>
+      </div>
+
+      <div class="auth__pitch">
+        <h2 class="vk-title">Cada dose<br />no tempo certo.</h2>
+        <p>Acompanhe o calendário vacinal do seu filho com clareza, lembretes e tranquilidade.</p>
+      </div>
+
+      <p class="auth__note">{{ disclaimer }}</p>
+    </aside>
+
+    <!-- Painel do formulário -->
+    <section class="auth__panel">
+      <div class="auth__card">
+        <!-- Marca exibida apenas no mobile (sem o painel de arte) -->
+        <div class="auth__mobile-brand">
+          <span class="auth__logo">
+            <svg width="19" height="19" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+              <path d="M12 6v12M6 12h12" stroke="#fff" stroke-width="2.6" stroke-linecap="round" />
+            </svg>
+          </span>
+          <span class="vk-title">VacinaKids</span>
+        </div>
+
+        @switch (mode()) {
+          @case ('sent') {
+            <div class="auth__view">
+              <span class="auth__hero-icon">
+                <svg width="27" height="27" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                  <path d="M4 6h16a1 1 0 011 1v10a1 1 0 01-1 1H4a1 1 0 01-1-1V7a1 1 0 011-1z" stroke="#5E7A2E" stroke-width="1.8" />
+                  <path d="M4 7l8 6 8-6" stroke="#5E7A2E" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" />
+                </svg>
+              </span>
+              <h1 class="auth__title vk-title">Verifique seu e-mail</h1>
+              <p class="auth__sub">
+                Enviamos um link de redefinição de senha para
+                <strong>{{ forgotForm.controls.email.value }}</strong>. Confira sua caixa de
+                entrada e a pasta de spam.
+              </p>
+              <button type="button" class="auth__btn" (click)="trocarModo('login')">
+                Voltar para o login
+              </button>
+            </div>
+          }
+          @default {
+            <div class="auth__view">
+              @if (mode() === 'forgot') {
+                <button type="button" class="auth__back" (click)="trocarModo('login')">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                    <path d="M15 6l-6 6 6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                  </svg>
+                  Voltar
+                </button>
+              }
+
+              <h1 class="auth__title vk-title">{{ titulo() }}</h1>
+              <p class="auth__sub">{{ subtitulo() }}</p>
+
+              @if (erro(); as msg) {
+                <p class="auth__alert" role="alert">{{ msg }}</p>
+              }
+
+              @switch (mode()) {
+                @case ('login') {
+                  <form class="auth__form" [formGroup]="loginForm" (ngSubmit)="entrar()">
+                    <label class="auth__label" for="login-email">E-mail</label>
+                    <input
+                      id="login-email"
+                      class="auth__input"
+                      formControlName="email"
+                      type="email"
+                      autocomplete="email"
+                      placeholder="voce@email.com"
+                    />
+                    @if (invalido(loginForm, 'email')) {
+                      <small class="auth__err">Informe um e-mail válido.</small>
+                    }
+
+                    <label class="auth__label" for="login-senha">Senha</label>
+                    <input
+                      id="login-senha"
+                      class="auth__input"
+                      formControlName="senha"
+                      type="password"
+                      autocomplete="current-password"
+                      placeholder="••••••"
+                    />
+                    @if (invalido(loginForm, 'senha')) {
+                      <small class="auth__err">Mínimo de 6 caracteres.</small>
+                    }
+
+                    <div class="auth__forgot">
+                      <button type="button" class="auth__link" (click)="trocarModo('forgot')">
+                        Esqueci minha senha
+                      </button>
+                    </div>
+
+                    <button type="submit" class="auth__btn" [disabled]="loading()">
+                      @if (loading()) {
+                        <ion-spinner name="crescent"></ion-spinner>
+                      } @else {
+                        Entrar
+                      }
+                    </button>
+
+                    <p class="auth__foot">
+                      Não tem conta?
+                      <button type="button" class="auth__link" (click)="trocarModo('signup')">
+                        Criar agora
+                      </button>
+                    </p>
+                  </form>
+                }
+
+                @case ('signup') {
+                  <form class="auth__form" [formGroup]="signupForm" (ngSubmit)="cadastrar()">
+                    <label class="auth__label" for="signup-nome">Nome do responsável</label>
+                    <input
+                      id="signup-nome"
+                      class="auth__input"
+                      formControlName="nome"
+                      type="text"
+                      autocomplete="name"
+                      placeholder="Ana Souza"
+                    />
+                    @if (invalido(signupForm, 'nome')) {
+                      <small class="auth__err">Informe seu nome.</small>
+                    }
+
+                    <label class="auth__label" for="signup-email">E-mail</label>
+                    <input
+                      id="signup-email"
+                      class="auth__input"
+                      formControlName="email"
+                      type="email"
+                      autocomplete="email"
+                      placeholder="voce@email.com"
+                    />
+                    @if (invalido(signupForm, 'email')) {
+                      <small class="auth__err">Informe um e-mail válido.</small>
+                    }
+
+                    <label class="auth__label" for="signup-senha">Senha</label>
+                    <input
+                      id="signup-senha"
+                      class="auth__input"
+                      formControlName="senha"
+                      type="password"
+                      autocomplete="new-password"
+                      placeholder="Mínimo 6 caracteres"
+                    />
+                    @if (invalido(signupForm, 'senha')) {
+                      <small class="auth__err">Mínimo de 6 caracteres.</small>
+                    }
+
+                    <label class="auth__check">
+                      <input type="checkbox" formControlName="aceito" />
+                      <span>Concordo com os termos de uso e com a política de privacidade do VacinaKids.</span>
+                    </label>
+
+                    <button type="submit" class="auth__btn" [disabled]="loading()">
+                      @if (loading()) {
+                        <ion-spinner name="crescent"></ion-spinner>
+                      } @else {
+                        Criar conta
+                      }
+                    </button>
+
+                    <p class="auth__foot">
+                      Já tem conta?
+                      <button type="button" class="auth__link" (click)="trocarModo('login')">
+                        Entrar
+                      </button>
+                    </p>
+                  </form>
+                }
+
+                @case ('forgot') {
+                  <form class="auth__form" [formGroup]="forgotForm" (ngSubmit)="recuperar()">
+                    <label class="auth__label" for="forgot-email">E-mail</label>
+                    <input
+                      id="forgot-email"
+                      class="auth__input"
+                      formControlName="email"
+                      type="email"
+                      autocomplete="email"
+                      placeholder="voce@email.com"
+                    />
+                    @if (invalido(forgotForm, 'email')) {
+                      <small class="auth__err">Informe um e-mail válido.</small>
+                    }
+
+                    <button type="submit" class="auth__btn" [disabled]="loading()">
+                      @if (loading()) {
+                        <ion-spinner name="crescent"></ion-spinner>
+                      } @else {
+                        Enviar link de recuperação
+                      }
+                    </button>
+
+                    <p class="auth__foot">
+                      Lembrou a senha?
+                      <button type="button" class="auth__link" (click)="trocarModo('login')">
+                        Entrar
+                      </button>
+                    </p>
+                  </form>
+                }
+              }
+            </div>
+          }
+        }
+      </div>
+    </section>
+  </div>
+</ion-content>

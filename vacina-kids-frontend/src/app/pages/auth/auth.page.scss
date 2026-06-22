@@ -1,0 +1,251 @@
+.auth {
+  --background: var(--vk-surface);
+}
+
+.auth__wrap {
+  display: flex;
+  min-height: 100%;
+}
+
+/* ── Painel de arte (oculto no mobile, visível ≥768px — PLANO §9) ── */
+.auth__art {
+  display: none;
+}
+
+/* ── Painel do formulário ── */
+.auth__panel {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 40px 28px;
+  overflow-y: auto;
+}
+.auth__card {
+  width: 100%;
+  max-width: 340px;
+}
+
+.auth__view {
+  animation: authFade 0.25s ease;
+}
+@keyframes authFade {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/* Marca exibida só no mobile */
+.auth__mobile-brand {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  margin-bottom: 28px;
+}
+.auth__mobile-brand .vk-title {
+  font-weight: 700;
+  font-size: 19px;
+  color: var(--vk-text);
+}
+.auth__logo {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex: none;
+  width: 34px;
+  height: 34px;
+  border-radius: 10px;
+  background: var(--ion-color-primary);
+
+&.auth__logo--light {
+    background: #ffffff;
+  }
+}
+
+.auth__title {
+  margin: 0 0 6px;
+  font-size: 24px;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  color: var(--vk-text);
+}
+.auth__sub {
+  margin: 0 0 26px;
+  color: var(--vk-text-2);
+  font-size: 14px;
+  line-height: 1.55;
+}
+
+.auth__alert {
+  margin: 0 0 18px;
+  padding: 10px 12px;
+  border-radius: 10px;
+  font-size: 0.85rem;
+  color: var(--vk-status-atrasada-fg);
+  background: var(--vk-status-atrasada-bg);
+}
+
+.auth__form {
+  display: flex;
+  flex-direction: column;
+}
+.auth__label {
+  display: block;
+  font-size: 12.5px;
+  font-weight: 600;
+  color: var(--vk-text);
+  margin-bottom: 7px;
+}
+.auth__input {
+  display: block;
+  width: 100%;
+  padding: 12px 14px;
+  margin-bottom: 16px;
+  border: 1.5px solid var(--vk-border-2);
+  border-radius: 12px;
+  background: #fff;
+  font: inherit;
+  font-size: 14px;
+  color: var(--vk-text);
+  outline: none;
+  transition: border-color 0.15s, box-shadow 0.15s;
+}
+.auth__input::placeholder {
+  color: var(--vk-text-3);
+}
+.auth__input:focus {
+  border-color: var(--ion-color-primary);
+  box-shadow: 0 0 0 3px rgba(171, 194, 112, 0.18);
+}
+.auth__err {
+  display: block;
+  margin: -10px 0 14px;
+  padding-left: 2px;
+  font-size: 0.74rem;
+  color: var(--vk-status-atrasada-fg);
+}
+
+.auth__forgot {
+  display: flex;
+  justify-content: flex-end;
+  margin: -4px 0 22px;
+  font-size: 12.5px;
+}
+
+.auth__link {
+  background: none;
+  border: 0;
+  padding: 0;
+  font: inherit;
+  font-weight: 600;
+  color: var(--vk-link);
+  cursor: pointer;
+}
+
+.auth__btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  min-height: 48px;
+  padding: 13px;
+  border: none;
+  border-radius: 12px;
+  background: var(--ion-color-primary);
+  color: #fff;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 600;
+  font-size: 15px;
+  cursor: pointer;
+  box-shadow: var(--vk-shadow-primary);
+  transition: background 0.15s, transform 0.1s;
+}
+.auth__btn:hover {
+  background: var(--ion-color-primary-shade);
+}
+.auth__btn:active {
+  transform: translateY(1px);
+}
+.auth__btn:disabled {
+  opacity: 0.75;
+  cursor: default;
+}
+.auth__btn ion-spinner {
+  width: 22px;
+  height: 22px;
+  color: #fff;
+}
+
+.auth__foot {
+  margin: 18px 0 0;
+  text-align: center;
+  font-size: 13px;
+  color: var(--vk-text-2);
+}
+
+.auth__check {
+  display: flex;
+  align-items: flex-start;
+  gap: 9px;
+  margin-bottom: 20px;
+  font-size: 12px;
+  line-height: 1.5;
+  color: var(--vk-text-2);
+  cursor: pointer;
+}
+.auth__check input {
+  flex: none;
+  margin-top: 2px;
+  width: 15px;
+  height: 15px;
+  accent-color: var(--ion-color-primary);
+}
+
+.auth__back {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin-bottom: 20px;
+  background: none;
+  border: 0;
+  padding: 0;
+  font: inherit;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--vk-link);
+  cursor: pointer;
+}
+
+.auth__hero-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 52px;
+  height: 52px;
+  margin-bottom: 18px;
+  border-radius: 15px;
+  background: var(--vk-status-aplicada-bg);
+}
+
+/*
+ * A alternância de visibilidade (painel de arte × marca mobile) vive AQUI, no
+ * componente, de propósito: os seletores do componente recebem o atributo de
+ * encapsulamento (`.auth__art[_ngcontent]`, especificidade 0-2-0), então um
+ * toggle equivalente no `global.scss` (0-1-0) jamais venceria o `display:none`
+ * base. A *aparência* do painel (gradiente, bolhas, marca, pitch) continua no
+ * `global.scss` por causa do budget de 4kb — lá não há conflito porque o
+ * componente não estiliza aqueles elementos.
+ */
+@media (min-width: 768px) {
+  .auth__art {
+    display: flex;
+  }
+  .auth__mobile-brand {
+    display: none;
+  }
+}
