@@ -1,0 +1,120 @@
+// Modal child-form — fiel ao protótipo (VacinaKids.dc.html): card branco 26px,
+// header com avatar+subtítulo, inputs nativos, swatches e dois botões.
+.cf {
+  display: block;
+  background: #fff;
+  padding: 26px;
+  max-height: 100%;
+  overflow-y: auto;
+}
+
+.cf__head {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 20px;
+}
+.cf__avatar {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex: none;
+  width: 46px;
+  height: 46px;
+  border-radius: 13px;
+  color: #fff;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 700;
+  font-size: 17px;
+}
+.cf__title {
+  margin: 0;
+  font-weight: 700;
+  font-size: 17px;
+  color: var(--vk-text);
+}
+.cf__sub {
+  margin: 2px 0 0;
+  font-size: 12.5px;
+  color: var(--vk-text-2);
+}
+
+.cf__label {
+  display: block;
+  font-size: 12.5px;
+  font-weight: 600;
+  color: var(--vk-text);
+  margin-bottom: 7px;
+}
+.cf__label--swatch {
+  margin-bottom: 9px;
+}
+
+.cf__input {
+  width: 100%;
+  padding: 12px 14px;
+  border: 1.5px solid var(--vk-border-2);
+  border-radius: 12px;
+  font-size: 14px;
+  color: var(--vk-text);
+  background: #fff;
+  outline: none;
+  margin-bottom: 16px;
+  font-family: inherit;
+}
+.cf__input:focus {
+  border-color: var(--ion-color-primary);
+}
+.cf__input--error {
+  border-color: var(--ion-color-orange-shade);
+}
+.cf__error {
+  display: block;
+  margin: -12px 0 14px;
+  font-size: 12px;
+  color: var(--ion-color-orange-shade);
+}
+
+.cf__swatches {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 24px;
+}
+.cf__swatch {
+  width: 38px;
+  height: 38px;
+  border-radius: 11px;
+  border: 3px solid transparent;
+  padding: 0;
+  flex: none;
+  cursor: pointer;
+}
+.cf__swatch.is-sel {
+  border-color: var(--vk-text);
+}
+
+.cf__foot {
+  display: flex;
+  gap: 10px;
+}
+.cf__btn {
+  padding: 12px;
+  border-radius: 12px;
+  font-weight: 600;
+  font-size: 14px;
+  cursor: pointer;
+}
+.cf__btn--ghost {
+  flex: 1;
+  border: 1px solid var(--vk-border-2);
+  background: #fff;
+  color: var(--vk-text);
+}
+.cf__btn--primary {
+  flex: 1.4;
+  border: none;
+  background: var(--ion-color-primary);
+  color: #fff;
+  font-family: 'Poppins', sans-serif;
+  box-shadow: 0 6px 14px -4px rgba(171, 194, 112, 0.6);
+}

@@ -1,0 +1,74 @@
+.dialog {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  text-align: left;
+  padding: 26px;
+  background: #fff;
+}
+
+.dialog__icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 46px;
+  height: 46px;
+  border-radius: 13px;
+  margin-bottom: 16px;
+  color: var(--vk-status-atrasada-fg);
+}
+.dialog--excluir .dialog__icon {
+  background: var(--vk-status-atrasada-bg);
+}
+.dialog--sair .dialog__icon {
+  background: #fff4ee;
+}
+
+.dialog__title {
+  margin: 0 0 6px;
+  font-weight: 700;
+  font-size: 17px;
+  color: var(--vk-text);
+}
+
+.dialog__msg {
+  margin: 0 0 22px;
+  font-size: 13.5px;
+  color: var(--vk-text-2);
+  line-height: 1.55;
+}
+.dialog__msg strong {
+  color: var(--vk-text);
+  font-weight: 600;
+}
+
+.dialog__actions {
+  display: flex;
+  gap: 10px;
+  width: 100%;
+}
+.dialog__btn {
+  flex: 1;
+  padding: 12px;
+  border-radius: 12px;
+  font-weight: 600;
+  font-size: 14px;
+  cursor: pointer;
+}
+.dialog__btn--ghost {
+  border: 1px solid var(--vk-border-2);
+  background: #fff;
+  color: var(--vk-text);
+}
+.dialog__btn--cta {
+  border: none;
+  color: #fff;
+}
+.dialog--excluir .dialog__btn--cta {
+  background: var(--ion-color-orange);
+  box-shadow: var(--vk-shadow-orange);
+}
+.dialog--sair .dialog__btn--cta {
+  background: var(--vk-status-atrasada-fg);
+  box-shadow: 0 6px 14px -4px rgba(194, 98, 47, 0.5);
+}

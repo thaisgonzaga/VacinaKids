@@ -1,0 +1,42 @@
+<div class="reg">
+  <header class="reg__head">
+    <span class="reg__badge" aria-hidden="true">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+        <path
+          d="M5 13l4 4L19 7"
+          stroke="currentColor"
+          stroke-width="2.2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        />
+      </svg>
+    </span>
+    <div>
+      <h2 class="reg__title vk-title">Registrar aplicação</h2>
+      <p class="reg__sub">Confirme os dados da dose.</p>
+    </div>
+  </header>
+
+  <div class="reg__summary">
+    <div class="reg__row"><span>Vacina</span><strong>{{ dose.catalog.vaccine }}</strong></div>
+    <div class="reg__row"><span>Dose</span><strong>{{ dose.catalog.dose }}</strong></div>
+    <div class="reg__row"><span>Data prevista</span><strong>{{ previsao() }}</strong></div>
+  </div>
+
+  <label class="reg__label" for="reg-date">Data de aplicação</label>
+  <input
+    id="reg-date"
+    class="reg__date"
+    type="date"
+    [max]="hoje"
+    [value]="data()"
+    (change)="onData($any($event.target).value)"
+  />
+
+  <div class="reg__actions">
+    <button type="button" class="reg__btn reg__btn--ghost" (click)="fechar()">Cancelar</button>
+    <button type="button" class="reg__btn reg__btn--primary" (click)="confirmar()">
+      Confirmar Aplicação
+    </button>
+  </div>
+</div>

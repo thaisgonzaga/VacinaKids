@@ -1,0 +1,48 @@
+<div class="ea">
+  <header class="ea__head">
+    <span class="ea__avatar">
+      <ion-icon name="person-outline"></ion-icon>
+    </span>
+    <div>
+      <h3 class="ea__title vk-title">Editar dados</h3>
+      <p class="ea__sub">Atualize as informações da conta.</p>
+    </div>
+  </header>
+
+  <form [formGroup]="form" (ngSubmit)="salvar()">
+    <label class="ea__label" for="ea-nome">Nome do responsável</label>
+    <input
+      id="ea-nome"
+      class="ea__input"
+      type="text"
+      formControlName="nome"
+      [class.ea__input--error]="invalido('nome')"
+    />
+    @if (invalido('nome')) {
+      <span class="ea__error">Informe um nome com ao menos 2 letras.</span>
+    }
+
+    <label class="ea__label" for="ea-email">E-mail</label>
+    <input
+      id="ea-email"
+      class="ea__input"
+      type="email"
+      formControlName="email"
+      [class.ea__input--error]="invalido('email')"
+    />
+    @if (invalido('email')) {
+      <span class="ea__error">Informe um e-mail válido.</span>
+    }
+
+    <p class="ea__hint">
+      Ao trocar o e-mail, enviaremos um link de confirmação para o novo endereço.
+    </p>
+
+    <div class="ea__foot">
+      <button type="button" class="ea__btn ea__btn--ghost" (click)="fechar()">Cancelar</button>
+      <button type="submit" class="ea__btn ea__btn--primary" [disabled]="loading()">
+        Salvar alterações
+      </button>
+    </div>
+  </form>
+</div>

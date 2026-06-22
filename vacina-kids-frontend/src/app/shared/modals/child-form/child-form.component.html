@@ -1,0 +1,56 @@
+<div class="cf">
+  <header class="cf__head">
+    <span class="cf__avatar" [style.background]="'var(--vk-avatar-' + corAtual + ')'">{{ preview }}</span>
+    <div>
+      <h3 class="cf__title vk-title">{{ titulo() }}</h3>
+      <p class="cf__sub">{{ subtitulo() }}</p>
+    </div>
+  </header>
+
+  <form [formGroup]="form" (ngSubmit)="salvar()">
+    <label class="cf__label" for="cf-nome">Nome da criança</label>
+    <input
+      id="cf-nome"
+      class="cf__input"
+      type="text"
+      formControlName="nome"
+      placeholder="Ex.: Helena Souza"
+      [class.cf__input--error]="invalido('nome')"
+    />
+    @if (invalido('nome')) {
+      <span class="cf__error">Informe um nome com ao menos 2 letras.</span>
+    }
+
+    <label class="cf__label" for="cf-data">Data de nascimento</label>
+    <input
+      id="cf-data"
+      class="cf__input"
+      type="date"
+      formControlName="dataNascimento"
+      [max]="hoje"
+      [class.cf__input--error]="invalido('dataNascimento')"
+    />
+    @if (invalido('dataNascimento')) {
+      <span class="cf__error">Selecione a data de nascimento.</span>
+    }
+
+    <span class="cf__label cf__label--swatch">Cor do avatar</span>
+    <div class="cf__swatches">
+      @for (c of cores; track c) {
+        <button
+          type="button"
+          class="cf__swatch"
+          [class.is-sel]="corAtual === c"
+          [style.background]="'var(--vk-avatar-' + c + ')'"
+          (click)="selecionarCor(c)"
+          [attr.aria-label]="'Cor ' + c"
+        ></button>
+      }
+    </div>
+
+    <div class="cf__foot">
+      <button type="button" class="cf__btn cf__btn--ghost" (click)="fechar()">Cancelar</button>
+      <button type="submit" class="cf__btn cf__btn--primary">{{ salvarLabel() }}</button>
+    </div>
+  </form>
+</div>

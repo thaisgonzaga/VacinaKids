@@ -1,0 +1,30 @@
+<div class="dialog dialog--{{ variante }}">
+  <span class="dialog__icon">
+    @switch (variante) {
+      @case ('sair') {
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+          <path d="M15 12H4m0 0l4-4m-4 4l4 4M14 4h4a2 2 0 012 2v12a2 2 0 01-2 2h-4"
+            stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" />
+        </svg>
+      }
+      @default {
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+          <path d="M5 7h14M10 7V5h4v2M6 7l1 13h10l1-13"
+            stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" />
+        </svg>
+      }
+    }
+  </span>
+
+  <h2 class="dialog__title vk-title">{{ titulo }}</h2>
+  <p class="dialog__msg">{{ mensagem }}@if (destaque) {<strong>{{ destaque }}</strong>}{{ sufixo }}</p>
+
+  <div class="dialog__actions">
+    <button type="button" class="dialog__btn dialog__btn--ghost" (click)="cancelar()">
+      {{ cancelarLabel }}
+    </button>
+    <button type="button" class="dialog__btn dialog__btn--cta" (click)="confirmar()">
+      {{ confirmarLabel }}
+    </button>
+  </div>
+</div>
