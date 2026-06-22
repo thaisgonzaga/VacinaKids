@@ -1,0 +1,41 @@
+<ion-content class="ion-padding">
+  @if (vazio()) {
+    <app-empty-state
+      icon="people-outline"
+      title="Nenhuma criança ainda"
+      message="Cadastre a primeira criança para começar a acompanhar a vacinação."
+      ctaLabel="Adicionar criança"
+      (action)="adicionar()"
+    ></app-empty-state>
+  } @else {
+    <div class="wrap">
+      <div class="head">
+        <p class="head__count">
+          {{ cards().length }}
+          {{ cards().length === 1 ? 'perfil cadastrado' : 'perfis cadastrados' }}
+        </p>
+        <button class="head__add" type="button" (click)="adicionar()">
+          <ion-icon name="add-outline" aria-hidden="true"></ion-icon>
+          Nova criança
+        </button>
+      </div>
+
+      <div class="grid">
+        @for (vm of cards(); track vm.child.id) {
+          <app-child-card
+            [child]="vm.child"
+            [coveragePercent]="vm.percent"
+            [active]="vm.child.id === activeChild.activeId()"
+            (selectChild)="selecionar($event)"
+            (edit)="editar($event)"
+            (remove)="excluir($event)"
+          ></app-child-card>
+        }
+        <button class="add" type="button" (click)="adicionar()">
+          <span class="add__icon"><ion-icon name="add-outline" aria-hidden="true"></ion-icon></span>
+          <span>Adicionar criança</span>
+        </button>
+      </div>
+    </div>
+  }
+</ion-content>
