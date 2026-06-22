@@ -51,10 +51,8 @@ npm test
 Registros de decisão (ADRs) em [`/docs/`](docs/):
 - ADR-001 — Ionic + Angular como base
 - ADR-002 — Persistência em Firestore + Auth desde o início (isolamento por `uid`)
-- ADR-003 — Modelagem do status: função pura com janela de tolerância — substitui ADR-003
-- ADR-004 — AngularFire em vez do SDK modular puro
-
-(ADR-002 e ADR-003 mantidos como histórico, marcados como substituídos.)
+- ADR-003 — Modelagem do cálculo de status vacinal (versão inicial, mantida como histórico)
+- ADR-004 — Modelagem do status: função pura com janela de tolerância — substitui ADR-003
 Uso consciente de IA documentado em [`/docs/uso-de-ia.md`](docs/uso-de-ia.md).
 
 ## Próximos passos / Roadmap
