@@ -1,0 +1,73 @@
+<ion-content class="ion-padding">
+  <div class="wrap">
+    <header class="profile">
+      <span class="profile__avatar">{{ iniciais }}</span>
+      <div class="profile__info">
+        <p class="profile__name">{{ perfil.nome || 'Minha conta' }}</p>
+        <p class="profile__email">{{ perfil.email }}</p>
+      </div>
+    </header>
+
+    <ion-accordion-group [multiple]="true" value="conta" class="acc">
+      <ion-accordion value="conta" class="acc__item">
+        <ion-item slot="header" lines="none" class="acc__header">
+          <span slot="start" class="acc__icon">
+            <ion-icon name="person-outline" aria-hidden="true"></ion-icon>
+          </span>
+          <div class="acc__head">
+            <span class="acc__title">Dados da conta</span>
+            <span class="acc__sub">Nome, e-mail e senha</span>
+          </div>
+        </ion-item>
+        <div slot="content" class="rows">
+          <button type="button" class="row" (click)="editarConta()">
+            <ion-icon name="person-outline" aria-hidden="true"></ion-icon>
+            <span class="row__text">Editar dados</span>
+            <ion-icon class="row__chev" name="chevron-forward" aria-hidden="true"></ion-icon>
+          </button>
+          <button type="button" class="row" (click)="trocarSenha()">
+            <ion-icon name="key-outline" aria-hidden="true"></ion-icon>
+            <span class="row__text">Trocar senha</span>
+            <ion-icon class="row__chev" name="chevron-forward" aria-hidden="true"></ion-icon>
+          </button>
+        </div>
+      </ion-accordion>
+
+      <ion-accordion value="sobre" class="acc__item">
+        <ion-item slot="header" lines="none" class="acc__header">
+          <span slot="start" class="acc__icon">
+            <ion-icon name="information-circle-outline" aria-hidden="true"></ion-icon>
+          </span>
+          <div class="acc__head">
+            <span class="acc__title">Sobre o VacinaKids</span>
+            <span class="acc__sub">Informações e avisos</span>
+          </div>
+        </ion-item>
+        <div slot="content" class="about">
+          <p>
+            Acompanhe a vacinação infantil (0–4 anos) com base no Calendário Nacional
+            de Vacinação 2026 (PNI).
+          </p>
+          <p class="about__note">
+            Ferramenta de organização — não substitui orientação médica nem a
+            caderneta oficial.
+          </p>
+        </div>
+      </ion-accordion>
+    </ion-accordion-group>
+
+    <button type="button" class="logout" (click)="sair()">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+        <path d="M15 12H4m0 0l4-4m-4 4l4 4M14 4h4a2 2 0 012 2v12a2 2 0 01-2 2h-4"
+          stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" />
+      </svg>
+      <span>Sair da conta</span>
+    </button>
+
+    <p class="vk-disclaimer">
+      Este sistema é uma ferramenta de organização e acompanhamento vacinal. Não substitui
+      orientação médica, a caderneta oficial de vacinação ou informações disponibilizadas pelo
+      Ministério da Saúde.
+    </p>
+  </div>
+</ion-content>
