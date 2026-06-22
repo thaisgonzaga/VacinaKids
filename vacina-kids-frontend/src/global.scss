@@ -1,0 +1,469 @@
+/*
+ * App Global CSS
+ * ----------------------------------------------------------------------------
+ * Put style rules here that you want to apply globally. These styles are for
+ * the entire app and not just one component. Additionally, this file can be
+ * used as an entry point to import other CSS/Sass files to be included in the
+ * output CSS.
+ * For more information on global stylesheets, visit the documentation:
+ * https://ionicframework.com/docs/layout/global-stylesheets
+ */
+
+/* Core CSS required for Ionic components to work properly */
+@import "@ionic/angular/css/core.css";
+
+/* Basic CSS for apps built with Ionic */
+@import "@ionic/angular/css/normalize.css";
+@import "@ionic/angular/css/structure.css";
+@import "@ionic/angular/css/typography.css";
+@import "@ionic/angular/css/display.css";
+
+/* Optional CSS utils that can be commented out */
+@import "@ionic/angular/css/padding.css";
+@import "@ionic/angular/css/float-elements.css";
+@import "@ionic/angular/css/text-alignment.css";
+@import "@ionic/angular/css/text-transformation.css";
+@import "@ionic/angular/css/flex-utils.css";
+
+/**
+ * Light mode travado (T0.9 / fidelidade visual).
+ * -----------------------------------------------------
+ * O import de dark mode foi removido de propósito — o VacinaKids é
+ * exclusivamente light mode. Não reintroduzir `palettes/dark.*.css`.
+ */
+
+/**
+ * Overlays (Fase 4). Modais abertos via `ModalController` são portados para a
+ * raiz do app — fora de qualquer view de componente — então seu dimensionamento
+ * precisa ser GLOBAL. Tamanho via variáveis (encapsulation-safe), sem `::part`.
+ */
+
+// Drawer lateral (vaccine-detail-drawer): 440px no desktop, tela cheia no mobile.
+ion-modal.vk-drawer {
+  --width: 440px;
+  --height: 100%;
+  --border-radius: 0;
+  justify-content: flex-end;
+}
+
+// Cards brancos do protótipo (child-form, edit-account, change-password):
+// 400px / raio 20px.
+ion-modal.vk-modal-child,
+ion-modal.vk-modal-account {
+  --width: min(400px, 92vw);
+  --height: auto;
+  --max-height: 92vh;
+  --border-radius: 20px;
+  --background: #fff;
+}
+
+// Diálogo de confirmação (compacto).
+ion-modal.vk-dialog {
+  --width: min(400px, 90vw);
+  --height: auto;
+  --border-radius: 22px;
+}
+
+// confirm-dialog (excluir / sair): card branco 360px / raio 20px do protótipo.
+ion-modal.vk-confirm {
+  --width: min(360px, 90vw);
+  --height: auto;
+  --border-radius: 20px;
+  --background: #fff;
+  --box-shadow: var(--vk-shadow-modal);
+}
+
+@media (max-width: 575.98px) {
+  ion-modal.vk-drawer {
+    --width: 100%;
+  }
+}
+
+// Toast (ui-feedback) — pílula escura do design (texto claro).
+.vk-toast {
+  --background: var(--vk-text);
+  --color: #fff;
+  --border-radius: 14px;
+  --box-shadow: 0 16px 40px -10px rgba(71, 60, 51, 0.5);
+  font-weight: 500;
+}
+
+/**
+ * Popover do child-switcher (T5.4). O conteúdo do `ion-popover` é renderizado
+ * fora da view do componente — como os modais via `ModalController` — então seu
+ * estilo precisa ser GLOBAL. Escopado por `.vk-child-pop` no host do popover.
+ */
+ion-popover.vk-child-pop {
+  --width: 260px;
+  --offset-y: 6px;
+  // Card branco, cantos arredondados e SEM escurecer a página atrás (design).
+  --background: #fff;
+  --border-radius: 16px;
+  --backdrop-opacity: 0;
+  --box-shadow: var(--vk-shadow-pop);
+}
+.pop {
+  padding: 8px;
+}
+.pop__label {
+  margin: 4px 8px 8px;
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--vk-text-3);
+  font-weight: 600;
+}
+.pop__empty {
+  margin: 8px;
+  font-size: 0.85rem;
+  color: var(--vk-text-2);
+}
+.pop__item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+  padding: 8px;
+  border-radius: 12px;
+  background: transparent;
+  cursor: pointer;
+  text-align: left;
+}
+.pop__item:hover {
+  background: var(--vk-border-3);
+}
+.pop__item.is-active {
+  background: var(--vk-border-2);
+}
+.pop__avatar {
+  flex: none;
+  display: grid;
+  place-items: center;
+  width: 34px;
+  height: 34px;
+  border-radius: 10px;
+  color: #fff;
+  font-weight: 700;
+  font-size: 0.85rem;
+}
+.pop__text {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+  flex: 1;
+}
+.pop__name {
+  font-weight: 600;
+  font-size: 0.88rem;
+}
+.pop__age {
+  font-size: 0.74rem;
+  color: var(--vk-text-3);
+}
+.pop__divider {
+  height: 1px;
+  margin: 8px 4px;
+  background: var(--vk-border-2);
+}
+.pop__manage {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+  padding: 10px 8px;
+  border-radius: 12px;
+  background: transparent;
+  cursor: pointer;
+  font-weight: 500;
+  color: var(--vk-link);
+}
+.pop__manage:hover {
+  background: var(--vk-border-3);
+}
+.pop__manage ion-icon {
+  font-size: 18px;
+}
+
+/**
+ * Shell do app (T5.4). Layout único (menu lateral + header custom + bottom nav +
+ * faixa de ícones no tablet) movido do componente para cá, escopado em
+ * `.vk-shell` (classe do `ion-split-pane`). Centralizar aqui mantém todas as
+ * regras com a mesma especificidade/ordem e respeita o budget de CSS do
+ * componente.
+ */
+.vk-shell {
+  --side-width: 264px;
+  --side-min-width: 264px;
+  --side-max-width: 264px;
+}
+
+// ── Menu lateral ──────────────────────────────────────────────
+.vk-shell .menu {
+  --background: #fff;
+  border-right: 1px solid var(--vk-border-2);
+}
+.vk-shell .menu__scroll {
+  --background: #fff;
+}
+.vk-shell .menu__inner {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  padding: 20px 14px;
+  gap: 8px;
+}
+.vk-shell .brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 4px 8px 16px;
+}
+.vk-shell .brand__logo {
+  display: grid;
+  place-items: center;
+  width: 38px;
+  height: 38px;
+  border-radius: 12px;
+  background: var(--ion-color-primary);
+  color: #fff;
+  font-size: 20px;
+}
+.vk-shell .brand__name {
+  font-weight: 700;
+  font-size: 1.15rem;
+}
+.vk-shell .nav {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+.vk-shell .nav__item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 11px 12px;
+  border-radius: 12px;
+  color: var(--vk-text-2);
+  text-decoration: none;
+  font-weight: 500;
+  transition: background 0.15s, color 0.15s;
+}
+.vk-shell .nav__item:hover {
+  background: var(--vk-border-3);
+  color: var(--vk-text);
+}
+.vk-shell .nav__item.is-active {
+  background: #eff4e0;
+  color: #5e7a2e;
+}
+.vk-shell .nav__icon {
+  flex: none;
+  width: 20px;
+  height: 20px;
+}
+
+// ── Conteúdo principal + header custom ────────────────────────
+.vk-shell #vk-main {
+  display: flex;
+  flex-direction: column;
+}
+.vk-shell .header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  // Safe-areas Capacitor (T5.1): header custom respeita notch/status bar e
+  // recorte lateral no landscape.
+  padding: calc(14px + env(safe-area-inset-top)) calc(18px + env(safe-area-inset-right))
+    14px calc(18px + env(safe-area-inset-left));
+  background: #fbfaf6;
+  border-bottom: 1px solid var(--vk-border-2);
+}
+.vk-shell .header__kicker {
+  display: block;
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  font-weight: 600;
+  color: var(--vk-text-3);
+}
+// Cumprimento do dashboard: caixa normal, sem espaçamento de eyebrow.
+.vk-shell .header__kicker--greeting {
+  font-size: 0.78rem;
+  text-transform: none;
+  letter-spacing: 0;
+  font-weight: 500;
+}
+.vk-shell .header__title {
+  margin: 0;
+  font-size: 1.2rem;
+  font-weight: 600;
+}
+.vk-shell .header__actions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.vk-shell #vk-outlet {
+  flex: 1;
+  position: relative;
+}
+
+// ── Bottom nav (só mobile) ────────────────────────────────────
+.vk-shell .bottom-nav {
+  display: none;
+}
+
+@media (max-width: 767.98px) {
+  .vk-shell ion-menu {
+    display: none;
+  }
+  .vk-shell .bottom-nav {
+    display: flex;
+    justify-content: space-around;
+    background: var(--vk-surface);
+    border-top: 1px solid var(--vk-border-2);
+    padding: 6px calc(4px + env(safe-area-inset-right))
+      calc(6px + env(safe-area-inset-bottom)) calc(4px + env(safe-area-inset-left));
+  }
+  .vk-shell .bottom-nav__item {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    align-items: center;
+    gap: 2px;
+    padding: 4px;
+    text-decoration: none;
+    font-size: 0.66rem;
+    font-weight: 500;
+    color: var(--vk-text-3);
+  }
+  .vk-shell .bottom-nav__item svg {
+    width: 22px;
+    height: 22px;
+  }
+  .vk-shell .bottom-nav__item.is-active {
+    color: var(--vk-link);
+  }
+}
+
+// ── Tablet (md): menu vira faixa de ícones ────────────────────
+@media (min-width: 768px) and (max-width: 991.98px) {
+  .vk-shell {
+    --side-width: 80px;
+    --side-min-width: 80px;
+    --side-max-width: 80px;
+  }
+  .vk-shell .menu__inner {
+    padding: 18px 8px;
+    align-items: center;
+  }
+  .vk-shell .brand {
+    padding: 4px 0 14px;
+  }
+  .vk-shell .brand__name,
+  .vk-shell .nav__label {
+    display: none;
+  }
+  .vk-shell .nav {
+    align-self: stretch;
+  }
+  .vk-shell .nav__item {
+    justify-content: center;
+    padding: 11px 0;
+  }
+}
+
+/**
+ * Login — *aparência* do painel de arte (T design-login). Movido do componente
+ * para cá por causa do budget de CSS (4kb): o `auth.page.scss` ficava acima do
+ * limite. Escopado por `.auth__*` (BEM único). A alternância de visibilidade
+ * (`.auth__art` × `.auth__mobile-brand`) NÃO vive aqui — está no
+ * `auth.page.scss`, porque os seletores encapsulados do componente (0-2-0)
+ * vencem estas regras globais (0-1-0); um toggle aqui seria ignorado. Estas
+ * regras só pintam o painel quando o componente já o tornou `display:flex`.
+ */
+@media (min-width: 768px) {
+  .auth__art {
+    position: relative;
+    overflow: hidden;
+    flex: 1;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 48px;
+    color: #fff;
+    background: linear-gradient(155deg, #abc270, #9ab45f);
+  }
+  .auth__bubble {
+    position: absolute;
+    border-radius: 50%;
+  }
+  .auth__bubble--1 {
+    width: 280px;
+    height: 280px;
+    top: -90px;
+    right: -70px;
+    background: rgba(255, 255, 255, 0.12);
+  }
+  .auth__bubble--2 {
+    width: 180px;
+    height: 180px;
+    bottom: 60px;
+    left: -50px;
+    background: rgba(254, 200, 104, 0.35);
+  }
+  .auth__brand,
+  .auth__pitch,
+  .auth__note {
+    position: relative;
+  }
+  .auth__brand {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .auth__logo--light {
+    width: 38px;
+    height: 38px;
+    border-radius: 11px;
+    background: #fff;
+  }
+  .auth__brand-name {
+    font-weight: 700;
+    font-size: 21px;
+    color: #fff;
+  }
+  .auth__pitch h2 {
+    margin: 0 0 14px;
+    font-weight: 700;
+    font-size: 42px;
+    line-height: 1.25;
+    letter-spacing: -0.02em;
+    color: #fff;
+  }
+  .auth__pitch p {
+    margin: 0;
+    max-width: 490px;
+    font-size: 20px;
+    line-height: 1.6;
+    color: rgba(255, 255, 255, 0.92);
+  }
+  .auth__note {
+    margin: 0;
+    max-width: 480px;
+    font-size: 13px;
+    line-height: 1.5;
+    color: rgba(255, 255, 255, 0.8);
+  }
+}
+
+// Aviso legal reutilizável (design: rodapé do dashboard e do empty state).
+.vk-disclaimer {
+  margin: 0;
+  padding: 4px 12px;
+  text-align: center;
+  font-size: 0.72rem;
+  line-height: 1.55;
+  color: var(--vk-text-3);
+}

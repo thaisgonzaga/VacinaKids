@@ -1,0 +1,96 @@
+// VacinaKids — tema base (T0.7) · light mode apenas.
+// Paleta, tokens de status, cores de avatar e fontes (PLANO §2 / §7).
+// Tons de status são a fonte visual única consumida por status-visual.ts.
+// Refinamento fino de superfícies/sombras fica na Fase 5.
+
+:root {
+  // ── Fontes (T0.8) ─────────────────────────────────────────────
+  --ion-font-family: 'Inter', 'Helvetica Neue', sans-serif;
+
+  // ── Base do app ───────────────────────────────────────────────
+  --ion-background-color: #fbfaf6;
+  --ion-background-color-rgb: 251, 250, 246;
+  --ion-text-color: #473c33;
+  --ion-text-color-rgb: 71, 60, 51;
+
+  // ── Cor primária (#ABC270 — Aplicada / em dia) ────────────────
+  --ion-color-primary: #abc270;
+  --ion-color-primary-rgb: 171, 194, 112;
+  --ion-color-primary-contrast: #473c33;
+  --ion-color-primary-contrast-rgb: 71, 60, 51;
+  --ion-color-primary-shade: #96ab63;
+  --ion-color-primary-tint: #b3c87e;
+
+  // ── Cor de alerta (#FEC868 — Pendente) ────────────────────────
+  --ion-color-warning: #fec868;
+  --ion-color-warning-rgb: 254, 200, 104;
+  --ion-color-warning-contrast: #473c33;
+  --ion-color-warning-contrast-rgb: 71, 60, 51;
+  --ion-color-warning-shade: #e0b05c;
+  --ion-color-warning-tint: #fece77;
+
+  // ── Cor custom "orange" (#FDA769 — Atrasada / campanhas) ──────
+  --ion-color-orange: #fda769;
+  --ion-color-orange-rgb: 253, 167, 105;
+  --ion-color-orange-contrast: #473c33;
+  --ion-color-orange-contrast-rgb: 71, 60, 51;
+  --ion-color-orange-shade: #df935c;
+  --ion-color-orange-tint: #fdb078;
+
+  // ── Texto / superfícies / bordas ──────────────────────────────
+  // Tons do protótipo (hierarquia taupe de 3 níveis). text-2/text-3 e link
+  // seguem o design para fidelidade visual; ver nota de contraste no resumo.
+  --vk-text: #473c33;
+  --vk-text-2: #8a8175;
+  --vk-text-3: #a39c8e;
+  // Verde de marca usado em texto tipo-link e ações secundárias (design).
+  --vk-link: #8a9b5e;
+  --vk-bg: #ece7dc;
+  --vk-surface: #fbfaf6;
+  // Bordas: `border` = contorno de card (#F0EBE1); `border-2` = input (#EAE3D6).
+  --vk-border: #f0ebe1;
+  --vk-border-2: #eae3d6;
+  --vk-border-3: #f4f0e8;
+
+  // ── Sombras (design) ──────────────────────────────────────────
+  --vk-shadow-card: 0 2px 10px rgba(71, 60, 51, 0.05);
+  --vk-shadow-card-sm: 0 2px 8px rgba(71, 60, 51, 0.04);
+  --vk-shadow-pop: 0 16px 40px -10px rgba(71, 60, 51, 0.25);
+  --vk-shadow-modal: 0 24px 60px -16px rgba(71, 60, 51, 0.45);
+  // Glow das CTAs primárias/atenção (botões cheios do design).
+  --vk-shadow-primary: 0 6px 16px -4px rgba(171, 194, 112, 0.6);
+  --vk-shadow-orange: 0 6px 14px -4px rgba(253, 167, 105, 0.6);
+
+  // ── Tokens de status (bg/fg) — PLANO §2 ───────────────────────
+  --vk-status-aplicada-bg: #e9f0d6;
+  --vk-status-aplicada-fg: #5e7a2e;
+  --vk-status-pendente-bg: #fff1d2;
+  --vk-status-pendente-fg: #b07d1f;
+  --vk-status-atrasada-bg: #ffe2cf;
+  --vk-status-atrasada-fg: #c2622f;
+  --vk-status-futura-bg: #edf2e2;
+  --vk-status-futura-fg: #7e9a4e;
+
+  // ── 6 cores de avatar (paleta do design) ──────────────────────
+  --vk-avatar-1: #abc270;
+  --vk-avatar-2: #fda769;
+  --vk-avatar-3: #fec868;
+  --vk-avatar-4: #8fb0c4;
+  --vk-avatar-5: #c49ac4;
+  --vk-avatar-6: #473c33;
+}
+
+// Habilita `color="orange"` nos componentes Ionic.
+.ion-color-orange {
+  --ion-color-base: var(--ion-color-orange);
+  --ion-color-base-rgb: var(--ion-color-orange-rgb);
+  --ion-color-contrast: var(--ion-color-orange-contrast);
+  --ion-color-contrast-rgb: var(--ion-color-orange-contrast-rgb);
+  --ion-color-shade: var(--ion-color-orange-shade);
+  --ion-color-tint: var(--ion-color-orange-tint);
+}
+
+// Títulos em Poppins (T0.8). Corpo herda Inter de --ion-font-family.
+.vk-title {
+  font-family: 'Poppins', 'Helvetica Neue', sans-serif;
+}
